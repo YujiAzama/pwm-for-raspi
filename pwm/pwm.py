@@ -3,10 +3,6 @@ import time
 from RPi import GPIO
 
 
-LOW = 0
-HIGH = 1
-
-
 class PWM(object):
 
     def __init__(self, pin):
@@ -16,13 +12,13 @@ class PWM(object):
 
     def start(self, duty=50.0, freq=1000.0):
         while True:
-            GPIO.output(self.pin, HIGH)
+            GPIO.output(self.pin, GPIO.HIGH)
             time.sleep(duty / freq / 100.0)
 
-            GPIO.output(self.pin, LOW)
+            GPIO.output(self.pin, GPIO.LOW)
             time.sleep((100.0 - duty) / freq / 100.0)
 
 
 if __name__ == "__main__":
-    pwm = PWM(1)
+    pwm = PWM(pin=1)
     pwm.start(duty=50.0)
